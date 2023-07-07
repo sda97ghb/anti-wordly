@@ -1,0 +1,81 @@
+# Docs: https://prospector.readthedocs.io/en/latest/profiles.html
+
+output-format: grouped
+
+strictness: veryhigh
+#strictness: medium
+
+member-warnings: true
+
+# 88 is used by black as default value
+max-line-length: 88
+
+# security issues
+# questionable, didn't find anything useful
+bandit:
+  run: false
+  enable:
+    - all
+
+# secret keys, passwords, AWS tokens or source control diffs
+# didn't find anything
+dodgy:
+  run: false
+
+# code complexity
+mccabe:
+  run: true
+  options:
+    max-complexity: 5
+
+# type checks
+mypy:
+  run: true
+  options:
+    ignore-missing-imports: true
+
+# PEP257 docstrings
+pydocstyle:
+  run: true
+  disable:
+    - D100  # Missing docstring in public module
+    - D101  # Missing docstring in public class
+    - D102  # Missing docstring in public method
+    - D103  # Missing docstring in public function
+    - D104  # Missing docstring in public package
+    - D105  # Missing docstring in magic method
+    - D106  # Missing docstring in public nested class
+    - D107  # Missing docstring in __init__
+    - D213  # Multi-line docstring summary should start at the second line
+
+# PEP8 style guide
+pycodestyle:
+  run: true
+  disable:
+    - E203  # whitespace before ':'
+    - N812  # lowercase imported as non-lowercase
+    - N813  # camelcase imported as lowercase
+
+# various errors, simpler and faster than pylint
+pyflakes:
+  run: true
+  disable:
+    - F541  # f-string is missing placeholders - already checked by pycodestyle
+
+# the most comprehensive static analysis tool
+pylint:
+  run: true
+  enable:
+    - all
+  disable:
+    - no-self-use
+
+# setup.py
+# we dont use setuptools
+pyroma:
+  run: false
+
+# unused classes, functions and variables
+# completely useless with Django
+vulture:
+  run: false
