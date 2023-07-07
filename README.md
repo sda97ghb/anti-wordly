@@ -4,6 +4,17 @@ Service for solving Wordly puzzles
 
 ## Run
 
+API:
+
+```shell
+poetry shell
+cd src
+uvicorn --port 8000 anti_wordly.api.v1.app:app
+x-www-browser http://127.0.0.1:8000/docs
+```
+
+CLI:
+
 ```shell
 poetry shell
 cd src
